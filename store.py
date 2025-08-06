@@ -15,7 +15,10 @@ class Store:
 
 
     def get_total_quantity(self) -> int:
-        return len(self.products)
+        total_quantity = 0
+        for product in self.products:
+            total_quantity += product.quantity
+        return total_quantity
 
 
     def get_all_products(self) -> list[Product]:
