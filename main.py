@@ -38,14 +38,17 @@ def start(store: Store):
             elif cli == '3':
                 while True:
                     print_all_products(store)
-                    print(len(store.get_all_products()))
                     product_index = input('''When you want to finish order, enter empty text.
                     Which product # do you want? ''')
+
                     if product_index == '':
                         break
 
-                    elif product_index.isdigit() and int(product_index) in range(1, len(store.get_all_products()) + 1):
-                        order_product = store.get_all_products()[int(product_index) - 1]
+                    if product_index.isdigit():
+                        product_index = int(product_index)
+
+                    if product_index in range(1, len(store.get_all_products()) + 1):
+                        order_product = store.get_all_products()[product_index - 1]
                         order_amount = int(input('What amount do you want? '))
                         store.order([(order_product, order_amount)])
                         print('Product added to shopping list!')
@@ -53,8 +56,10 @@ def start(store: Store):
             elif cli == '4':
                 print('\nLeaving the store...Thank you for shopping! :)')
                 break
+
             elif cli == '':
                 continue
+
             else:
                 raise ValueError()
 

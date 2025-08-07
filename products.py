@@ -55,6 +55,6 @@ class Product:
         """
         if not self.is_active() or self.get_quantity() < quantity:
             raise ValueError(f"There are less then {quantity} {self.name} available!")
-        else:
-            self.set_quantity(self.quantity - quantity)
-            return self.price * quantity
+
+        self.set_quantity(self.quantity - quantity)
+        return self.price * quantity

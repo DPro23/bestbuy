@@ -48,8 +48,7 @@ class Store:
                 if quantity > product_quantity:
                     print(f'There are only {product_quantity} available in the store!')
                     raise ValueError()
-                else:
-                    product_price = product.buy(quantity)
-                    total_price += product_price
+                product_price = product.buy(quantity)
+                total_price += product_price
 
         return total_price
