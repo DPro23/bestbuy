@@ -1,4 +1,5 @@
 class Product:
+    """Handles methods specifics to manage a single product."""
     def __init__(self, name: str, price: float, quantity: int):
         """A product with name and positive quantity is active by default"""
         try:
@@ -8,6 +9,7 @@ class Product:
             self.price = float(price)
             self.quantity = int(quantity)
             self.active = True
+
         except ValueError:
             print("Product error: empty name / negative price or quantity")
 
@@ -21,7 +23,9 @@ class Product:
         """Sets the product quantity (int)"""
         self.quantity = quantity
         if self.quantity <= 0:
-            self.active = False
+            self.deactivate()
+        else:
+            self.activate()
 
 
     def is_active(self) -> bool:
@@ -49,8 +53,8 @@ class Product:
         Returns the total price (float) of the purchase.
         Updates the quantity of the product.
         """
-        if not self.is_active() or self.quantity < quantity:
+        if not self.is_active() or self.get_quantity() < quantity:
             raise ValueError(f"There are less then {quantity} {self.name} available!")
         else:
-            self.quantity -= quantity
+            self.set_quantity(self.quantity - quantity)
             return self.price * quantity

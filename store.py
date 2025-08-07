@@ -2,6 +2,7 @@ from products import Product
 
 
 class Store:
+    """Contains methods to manage a list of products"""
     def __init__(self, products: list[Product]):
         """Store handles a list of products"""
         self.products = products
@@ -39,12 +40,16 @@ class Store:
         Product (Product class) and quantity (int).
         Buys the products and returns the total price of the order
         """
-        total_price = 0
+        total_price = 0.0
         for order_product in shopping_list:
             if order_product[0] in self.products:
                 product, quantity = order_product
-                product_price = product.buy(quantity)
-                total_price += product_price
-            else:
-                raise Exception(f'Product "{order_product[0]}" not found in store')
-        return float(total_price)
+                product_quantity = order_product[0].get_quantity()
+                if quantity > product_quantity:
+                    print(f'There are only {product_quantity} available in the store!')
+                    raise ValueError()
+                else:
+                    product_price = product.buy(quantity)
+                    total_price += product_price
+
+        return total_price
