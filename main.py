@@ -35,31 +35,32 @@ def start(store: Store):
                 print(f"\n🏪 Total of {store.get_total_quantity()} items in the store")
 
             elif cli == '3':
+                total_price = 0.0
                 while True:
                     print_all_products(store)
                     product_index = input(f"When you want to finish order, enter empty text."
-                    f"\nWhich product # do you want?")
+                    f"\nWhich product # do you want? ")
 
                     if product_index == '':
+                        # When order is finished, print the total_price
+                        print(f"\n✅ Order completed!\n🏷️ Total order price: ${total_price}.")
                         break
 
                     if product_index.isdigit():
                         product_index = int(product_index)
 
+                    # Order a specific amount of a single product
                     if product_index in range(1, len(store.get_all_products()) + 1):
                         order_product = store.get_all_products()[product_index - 1]
                         order_amount = int(input('What amount do you want? '))
                         order_price = store.order([(order_product, order_amount)])
-
-                        print(f"🏷️ Order cost: ${order_price}.")
+                        total_price += order_price
+                        print(f"\n🏷️ Products price: ${order_price}.")
                         print(f'🛒 x{order_amount} {order_product.name} added to your shopping list!')
 
             elif cli == '4':
                 print('\n🏪 Leaving the store...Thank you for shopping! 🙂')
                 break
-
-            elif cli == '':
-                continue
 
             else:
                 raise ValueError()

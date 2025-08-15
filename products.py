@@ -54,7 +54,7 @@ class Product:
         Updates the quantity of the product.
         """
         if not self.is_active() or self.get_quantity() < quantity:
-            raise ValueError(f"There are less then {quantity} {self.name} available!")
+            raise ValueError(f"There are less than {quantity} {self.name} available!")
 
         self.set_quantity(self.quantity - quantity)
         return self.price * quantity
