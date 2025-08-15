@@ -57,14 +57,14 @@ def start(store: Store):
                         products_price = store.order([(order_product, order_amount)])
                         total_order_price += products_price
 
-                        print(f'\n✅Order completed!'
+                        print(f'\n✅ Order completed!'
                               f'\n🛒 x{order_amount} {order_product.name}'
-                              f'\n🏷️Products price: ${products_price}\n')
+                              f'\n🏷️ Products price: ${products_price}\n')
                     else:
                         print(f'❌ Product #{product_index} is not in the store!')
 
             elif cli == '4':
-                print('\n🏪 Leaving the store...Thank you for shopping! 🙂')
+                print('\n🔔 Leaving the store...Thank you for shopping! 🏪')
                 break
 
             else:
