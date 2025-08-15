@@ -21,12 +21,12 @@ def start(store: Store):
     """Start a CLI asking user to choose options to manage the store"""
     while True:
         try:
-            cli = input(f"\n🏪 STORE MENU 🏪\n"
-                f"1. List all products in store\n"
-                f"2. Show total amount in store\n"
-                f"3. Make an order\n"
-                f"4. Quit\n"
-                f"\n#️⃣ Please choose a number: ")
+            cli = input("\n🏪 STORE MENU 🏪\n"
+                "1. List all products in store\n"
+                "2. Show total amount in store\n"
+                "3. Make an order\n"
+                "4. Quit\n"
+                "\n#️⃣ Please choose a number: ")
 
             if cli == '1':
                 print_all_products(store)
@@ -38,12 +38,15 @@ def start(store: Store):
                 total_price = 0.0
                 while True:
                     print_all_products(store)
-                    product_index = input(f"When you want to finish order, enter empty text."
-                    f"\nWhich product # do you want? ")
+                    product_index = input("When you want to finish order, enter empty text."
+                    "\nWhich product # do you want? ")
 
                     if product_index == '':
                         # When order is finished, print the total_price
-                        print(f"\n✅ Order completed!\n🏷️ Total order price: ${total_price}.")
+                        if total_price > 0:
+                            print(f"\n✅ Order completed!\n🏷️ Total order price: ${total_price}.")
+                        else:
+                            print(f"\n❎ Your shopping list is empty! Nothing to order.")
                         break
 
                     if product_index.isdigit():
@@ -56,7 +59,8 @@ def start(store: Store):
                         order_price = store.order([(order_product, order_amount)])
                         total_price += order_price
                         print(f"\n🏷️ Products price: ${order_price}.")
-                        print(f'🛒 x{order_amount} {order_product.name} added to your shopping list!')
+                        print(f'🛒 x{order_amount} {order_product.name} '
+                              'added to your shopping list!')
 
             elif cli == '4':
                 print('\n🏪 Leaving the store...Thank you for shopping! 🙂')
