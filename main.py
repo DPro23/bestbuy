@@ -13,7 +13,7 @@ def print_all_products(store: Store):
     """Prints all products in store indexed and prettier"""
     print(f"\n{'-' * 5} PRODUCTS IN THE STORE {'-' * 5}")
     for idx, product in enumerate(store.get_all_products()):
-        print(f'{idx + 1}. {product.name}, Price: {product.price}, Quantity: {product.quantity}')
+        print(f'{idx + 1}. {product.name}, Price: ${product.price}, Quantity: {product.quantity}')
     print('-' * 30)
 
 
@@ -21,25 +21,24 @@ def start(store: Store):
     """Start a CLI asking user to choose options to manage the store"""
     while True:
         try:
-            cli = input('''
-                --- STORE MENU ---
-                1. List all products in store
-                2. Show total amount in store
-                3. Make an order
-                4. Quit
-                
-                Please choose a number: ''')
+            cli = input(f"\n🏪 STORE MENU 🏪\n"
+                f"1. List all products in store\n"
+                f"2. Show total amount in store\n"
+                f"3. Make an order\n"
+                f"4. Quit\n"
+                f"\n#️⃣ Please choose a number: ")
+
             if cli == '1':
                 print_all_products(store)
 
             elif cli == '2':
-                print(f"\nTotal of {store.get_total_quantity()} items in the store")
+                print(f"\n🏪 Total of {store.get_total_quantity()} items in the store")
 
             elif cli == '3':
                 while True:
                     print_all_products(store)
-                    product_index = input('''When you want to finish order, enter empty text.
-                    Which product # do you want? ''')
+                    product_index = input(f"When you want to finish order, enter empty text."
+                    f"\nWhich product # do you want?")
 
                     if product_index == '':
                         break
@@ -51,11 +50,12 @@ def start(store: Store):
                         order_product = store.get_all_products()[product_index - 1]
                         order_amount = int(input('What amount do you want? '))
                         order_price = store.order([(order_product, order_amount)])
-                        print(f"🏷️Order cost: {order_price}$.")
-                        print(f'🛒x{order_amount} {order_product.name} added to your shopping list!')
+
+                        print(f"🏷️ Order cost: ${order_price}.")
+                        print(f'🛒 x{order_amount} {order_product.name} added to your shopping list!')
 
             elif cli == '4':
-                print('\n🏪Leaving the store...Thank you for shopping! 🙂')
+                print('\n🏪 Leaving the store...Thank you for shopping! 🙂')
                 break
 
             elif cli == '':
