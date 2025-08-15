@@ -43,10 +43,7 @@ def start(store: Store):
 
                     if product_index == '':
                         # When order is finished, print the total_price
-                        if total_price > 0:
-                            print(f"\n✅ Order completed!\n🏷️ Total order price: ${total_price}.")
-                        else:
-                            print(f"\n❎ Your shopping list is empty! Nothing to order.")
+                        print(f"\n✅ Order completed!\n🏷️ Total order price: ${total_price}")
                         break
 
                     if product_index.isdigit():
