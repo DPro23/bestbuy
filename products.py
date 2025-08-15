@@ -22,10 +22,10 @@ class Product:
     def set_quantity(self, quantity):
         """Sets the product quantity (int)"""
         self.quantity = quantity
-        if self.quantity <= 0:
-            self.deactivate()
-        else:
+        if self.quantity > 0:
             self.activate()
+        else:
+            self.deactivate()
 
 
     def is_active(self) -> bool:

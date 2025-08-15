@@ -45,8 +45,9 @@ class Store:
             if order_product[0] in self.products:
                 product, quantity = order_product
                 product_quantity = order_product[0].get_quantity()
+
                 if quantity > product_quantity:
-                    print(f'There are only {product_quantity} available in the store!')
+                    print(f'❌ Only {product_quantity} {product.name} available in the store!')
                 product_price = product.buy(quantity)
                 total_price += product_price
 
