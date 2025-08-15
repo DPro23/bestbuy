@@ -4,14 +4,14 @@ class Product:
         """A product with name and positive quantity is active by default"""
         try:
             if name.strip() == '' or price < 0 or quantity < 0:
-                raise ValueError()
+                raise ValueError('Empty name and negative price or quantity not allowed.')
             self.name = name.strip()
             self.price = float(price)
             self.quantity = int(quantity)
-            self.active = True
+            self.active = self.quantity > 0
 
         except ValueError:
-            print("Product error: empty name / negative price or quantity")
+            print("Product can't be initialized.")
 
 
     def get_quantity(self) -> int:
