@@ -2,10 +2,10 @@ from products import Product
 from store import Store
 
 # setup initial stock of inventory
-product_list = [ Product("MacBook Air M2", price=1450, quantity=100),
-                 Product("Bose QuietComfort Earbuds", price=250, quantity=500),
-                 Product("Google Pixel 7", price=500, quantity=250)
-               ]
+product_list = [Product("MacBook Air M2", price=1450, quantity=100),
+                Product("Bose QuietComfort Earbuds", price=250, quantity=500),
+                Product("Google Pixel 7", price=500, quantity=250)
+                ]
 best_buy = Store(product_list)
 
 
@@ -18,7 +18,7 @@ def print_all_products(store: Store):
 
 
 def start(store: Store):
-    """Run the Store CLI"""
+    """Start a CLI asking user to choose options to manage the store"""
     while True:
         try:
             cli = input('''
@@ -50,11 +50,12 @@ def start(store: Store):
                     if product_index in range(1, len(store.get_all_products()) + 1):
                         order_product = store.get_all_products()[product_index - 1]
                         order_amount = int(input('What amount do you want? '))
-                        store.order([(order_product, order_amount)])
-                        print('Product added to shopping list!')
+                        order_price = store.order([(order_product, order_amount)])
+                        print(f"🏷️Order cost: {order_price}$.")
+                        print(f'🛒x{order_amount} {order_product.name} added to your shopping list!')
 
             elif cli == '4':
-                print('\nLeaving the store...Thank you for shopping! :)')
+                print('\n🏪Leaving the store...Thank you for shopping! 🙂')
                 break
 
             elif cli == '':
@@ -67,4 +68,5 @@ def start(store: Store):
             print('\nPlease enter a valid number.')
 
 
-start(best_buy)
+if __name__ == '__main__':
+    start(best_buy)
